@@ -2,21 +2,19 @@
   tasks:
     - name: Installs nginx web server
       yum: pkg=nginx state=installed update_cache=true
-	  
+
     - name: Installs keepalived
       yum: pkg=keepalived state=installed update_cache=true
       notify:
        - start nginx
-		
+
     - name: Setup IP Table Rules
       command: iptables -I INPUT -d 224.0.0.0/8 -j ACCEPT 
       sudo: true
-	 
+
     - name: Setup other IP table rule
       command: iptables -I INPUT -p vrrp -j ACCEPT	 
       sudo: true
-	 
-	
 
   handlers:
     - name: start nginx
