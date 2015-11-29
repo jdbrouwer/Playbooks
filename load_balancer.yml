@@ -1,3 +1,4 @@
+---
 - hosts: loadbalancers
   tasks:
     - name: Installs nginx web server
